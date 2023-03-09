@@ -1,70 +1,209 @@
-# Getting Started with Create React App
+In this project, let's build a **Github Popular Repos** by applying the concepts we have learned till now.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Refer to the images below:
 
-## Available Scripts
+ <br/>
+ <div style="text-align: center;">
+     <img src="https://assets.ccbp.in/frontend/content/react-js/github-popular-repos-output.gif" alt="github popular repos output" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+ </div>
+ <br/>
 
-In the project directory, you can run:
+**Failure View**
 
-### `npm start`
+ <div style="text-align: center;">
+     <img src="https://assets.ccbp.in/frontend/content/react-js/github-popular-repos-error-view-output.gif" alt="github popular repos failure view output" style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+ </div>
+ <br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Design Files
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<details>
+<summary>Click to view</summary>
 
-### `npm test`
+- [Extra Small (Size < 576px) and Small (Size >= 576px)](https://assets.ccbp.in/frontend/content/react-js/github-repos-sm-outputs.png)
+- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Success](https://assets.ccbp.in/frontend/content/react-js/github-repos-lg-success-output.png)
+- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Loading](https://assets.ccbp.in/frontend/content/react-js/github-repos-lg-loading-output.png)
+- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px) - Failure](https://assets.ccbp.in/frontend/content/react-js/github-repos-error-view-lg-output.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+</details>
 
-### `npm run build`
+### Set Up Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<details>
+<summary>Click to view</summary>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Download dependencies by running `npm install`
+- Start up the app using `npm start`
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Completion Instructions
 
-### `npm run eject`
+<details>
+<summary>Functionality to be added</summary>
+<br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The app must have the following functionalities
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- When the app is opened initially,
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  - An HTTP GET request should be made to **githubReposApiUrl** with query parameter as `language` and its initial value as `ALL`
+  - **_loader_** should be displayed while fetching the data
+  - After the data is fetched successfully, display the repositories list received in the response
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- When a language filter is active
 
-## Learn More
+  - An HTTP GET request should be made to the above-mentioned URL with the `id` of the active language
+  - **_loader_** should be displayed while fetching the data
+  - After the data is fetched successfully, display the repositories list received in the response
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- The `GithubPopularRepos` component is provided with `languageFiltersData`. It consists of a list of language filter objects with the following properties in each language filter object
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  |   Key    | Data Type |
+  | :------: | :-------: |
+  |    id    |  String   |
+  | language |  String   |
 
-### Code Splitting
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<details>
 
-### Analyzing the Bundle Size
+<summary>API Requests & Responses</summary>
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**githubReposApiUrl**
 
-### Making a Progressive Web App
+#### API: `https://apis.ccbp.in/popular-repos`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Example: `https://apis.ccbp.in/popular-repos?language=ALL`
 
-### Advanced Configuration
+#### Method: `GET`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### Description:
 
-### Deployment
+Returns a response containing the list of repositories
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### Response
 
-### `npm run build` fails to minify
+```json
+{
+  "popular_repos": [
+    {
+	  "name": "freeCodeCamp",
+      "id": 28457823,
+      "issues_count": 154,
+      "forks_count": 26651,
+      "stars_count": 331304,
+      "avatar_url": "https://avatars.githubusercontent.com/u/9892522?v=4"
+    },
+      ...
+  ],
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</details>
+
+<details>
+<summary>Components Structure</summary>
+
+<br/>
+<div style="text-align: center;">
+    <img src="https://assets.ccbp.in/frontend/content/react-js/github-popular-repos-component-breakdown-structure.png" alt="component-breakdown-structure" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+</div>
+<br/>
+
+</details>
+
+<details>
+<summary>Implementation Files</summary>
+<br/>
+
+Use these files to complete the implementation:
+
+- `src/components/GithubPopularRepos/index.js`
+- `src/components/GithubPopularRepos/index.css`
+- `src/components/LanguageFilterItem/index.js`
+- `src/components/LanguageFilterItem/index.css`
+- `src/components/RepositoryItem/index.js`
+- `src/components/RepositoryItem/index.css`
+</details>
+
+### Quick Tips
+
+<details close>
+<summary>Click to view</summary>
+<br>
+
+- To display the animated loader, we need to import the `Loader` component using the below statement
+
+  ```jsx
+  import Loader from 'react-loader-spinner'
+  ```
+
+- In order to display the given animated loader, pass the `type` and `color` props to the `Loader` component with values as **ThreeDots** and **#0284c7**, respectively
+
+  ```jsx
+  <Loader type="ThreeDots" color="#0284c7" height={80} width={80} />
+  ```
+
+    <br/>  
+  </details>
+
+### Important Note
+
+<details>
+<summary>Click to view</summary>
+
+<br/>
+
+**The following instructions are required for the tests to pass**
+
+- Wrap the `Loader` component with an HTML container element and add the `data-testid` attribute value as **loader** to it
+
+  ```jsx
+  <div data-testid="loader">
+    <Loader type="ThreeDots" color="#0284c7" height={80} width={80} />
+  </div>
+  ```
+
+</details>
+
+### Resources
+
+<details>
+<summary>Image URLs</summary>
+
+- [https://assets.ccbp.in/frontend/react-js/stars-count-img.png](https://assets.ccbp.in/frontend/react-js/stars-count-img.png) alt should be **stars**
+- [https://assets.ccbp.in/frontend/react-js/forks-count-img.png](https://assets.ccbp.in/frontend/react-js/forks-count-img.png) alt should be **forks**
+- [https://assets.ccbp.in/frontend/react-js/issues-count-img.png](https://assets.ccbp.in/frontend/react-js/issues-count-img.png) alt should be **open issues**
+- [https://assets.ccbp.in/frontend/react-js/api-failure-view.png](https://assets.ccbp.in/frontend/react-js/api-failure-view.png) alt should be **failure view**
+
+</details>
+
+<details>
+<summary>Colors</summary>
+
+<br/>
+
+<div style="background-color: #0284c7; width: 150px; padding: 10px; color: white">Hex: #0284c7</div>
+<div style="background-color: #ffffff; width: 150px; padding: 10px; color: black">Hex: #ffffff</div>
+<div style="background-color: #0f172a; width: 150px; padding: 10px; color: white">Hex: #0f172a</div>
+<div style="background-color: #f8f8ff; width: 150px; padding: 10px; color: black">Hex: #f8f8ff</div>
+<div style="background-color: #e73959; width: 150px; padding: 10px; color: white">Hex: #e73959</div>
+<div style="background-color: #1e293b; width: 150px; padding: 10px; color: white">Hex: #1e293b</div>
+
+</details>
+
+<details>
+<summary>Font-families</summary>
+
+- Roboto
+- Lobster
+
+</details>
+
+> ### _Things to Keep in Mind_
+>
+> - All components you implement should go in the `src/components` directory.
+> - Don't change the component folder names as those are the files being imported into the tests.
+> - **Do not remove the pre-filled code**
+> - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
